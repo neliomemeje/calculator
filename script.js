@@ -17,8 +17,7 @@ function App() {
         }
         break;
       }
-
-      default: {
+       default: {
         let e = undefined;
         if (ops.includes(innerText)) {
           if (ops.includes(lastpressed) && innerText !== "-") {
@@ -29,6 +28,13 @@ function App() {
             e = calc.slice(0, calc.length - lastIndex) + ` ${innerText} `;
           } else {
             e = `${calc} ${innerText} `;
+          }
+
+          if (calc.length === 7 && innerText === "-") {
+            if (ops.includes(lastpressed)) {
+              e = calc.slice(0, -5) + ` ${innerText} `;
+            }
+            return;
           }
         } else {
           e = calc === "0" ? innerText : calc + innerText;
